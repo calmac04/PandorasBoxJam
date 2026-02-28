@@ -7,7 +7,7 @@ public class BattleCommandScript : MonoBehaviour
     public GameObject offenseChildren;
     public GameObject defenseChildren;
     public GameObject utilityChildren;
-    List<GameObject> selectorChildren = new List<GameObject>();
+    List<GameObject> selectors = new List<GameObject>();
     List<bool> selectorVisibility = new List<bool> { true, true, true };
 
     //Will either activate or deactivate the selector children and corresponding selector children
@@ -15,11 +15,11 @@ public class BattleCommandScript : MonoBehaviour
     {
         if (selectorVisibility[selector] == true)
         {
-            DeactivateSelector(selectorChildren[selector]);
+            DeactivateSelector(selector);
         }
         else
         {
-            ActivateSelector(selectorChildren[selector]);
+            ActivateSelector(selector);
         }
         
         //Checks if other selectors are active
@@ -28,32 +28,34 @@ public class BattleCommandScript : MonoBehaviour
             if (i == selector) { continue; }
             if (selectorVisibility[i] == true)
             {
-                DeactivateSelector(selectorChildren[i]);
+                DeactivateSelector(i);
             }
         }
     }
 
-    void DeactivateSelector(GameObject selectorChildren)
+    void DeactivateSelector(int selector)
     {
-        selectorChildren.SetActive(false);
+        selectors[selector].SetActive(false);
+        selectorVisibility[selector] = false;
     }
 
-    void ActivateSelector(GameObject selectorChildren)
+    void ActivateSelector(int selector)
     {
-        selectorChildren.SetActive(true);
+        selectors[selector].SetActive(true);
+        selectorVisibility[selector] = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Append selectors
-        selectorChildren.Add(offenseChildren);
-        selectorChildren.Add(defenseChildren);
-        selectorChildren.Add(utilityChildren);
+        selectors.Add(offenseChildren);
+        selectors.Add(defenseChildren);
+        selectors.Add(utilityChildren);
 
         for (int i = 0; i < 3; i++)
         {
-            DeactivateSelector(selectorChildren[i]);
+            DeactivateSelector(i);
         }
     }
 
