@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics; 
 using UnityEngine;
 
 public class CombatSystemScript : MonoBehaviour
@@ -13,26 +14,32 @@ public class CombatSystemScript : MonoBehaviour
     public List<EntityManagerScript> Entities;
     public List<float> Speeds;
     public EntityManagerScript CurrentCombatant;
+    public GameObject MonsterPrefab;
+    public int roundcount = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SpawnMonster();
         CalcTurns();
         for (int i = 0; i < TurnOrder.Count; i++)
         {
             Debug.Log(TurnOrder[i].ToString());
         }
-        GetTurn();
+        GetTurn().IsTurn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!Player.IsTurn)
+        {
+            AITurn(CurrentCombatant);
+        }
     }
 
     void CalcTurns()
     {
-        //if (TurnOrder.Count > 0) { TurnOrder.Clear(); }
+        if (TurnOrder.Count > 0) { TurnOrder.Clear(); }
         float loopcount = Player.Speed;
         for (int i = 0; i <= (loopcount / 20); i++)
         {
@@ -62,7 +69,7 @@ public class CombatSystemScript : MonoBehaviour
         Player.Speed = Player.TrueSpeed;
     }
 
-    void GetTurn()
+    public EntityManagerScript GetTurn()
     {
         if (Entities.Count != 0)
         {
@@ -70,11 +77,62 @@ public class CombatSystemScript : MonoBehaviour
             Debug.Log(CurrentCombatant.ToString());
             Entities.RemoveAt(0);
             Speeds.RemoveAt(0);
-            
+            return CurrentCombatant;
         }
         else
         {
             CalcTurns();
+            CurrentCombatant = Entities[0];
+            Debug.Log(CurrentCombatant.ToString());
+            Entities.RemoveAt(0);
+            Speeds.RemoveAt(0);
+            return CurrentCombatant;
         }
+    }
+
+    public void EndRound(EntityManagerScript Enemy)
+    {
+        roundcount++;
+        Player.HeldItems.Add(Enemy.HeldItems[0]);
+        Player.PassiveEffects.Add(Enemy.PassiveEffects[0]);
+    }
+
+    void SpawnMonster()
+    {
+        for(int i = 0;i < roundcount+1;i++)
+        {
+            if (Enemy1 == null)
+            {
+                Enemy1 = Instantiate(MonsterPrefab).GetComponent<EntityManagerScript>();
+                Debug.Log("EnemySpawn");
+                Debug.Log(Enemy1.Monster);
+                Enemy1.Monster.AssignMonster();
+            }
+            else if (Enemy2 == null)
+            {
+                Enemy2 = Instantiate(MonsterPrefab).GetComponent<EntityManagerScript>();
+                Enemy2.Monster.AssignMonster();
+            }
+            else if (Enemy3 == null)
+            {
+                Enemy3 = Instantiate(MonsterPrefab).GetComponent<EntityManagerScript>();
+                Enemy3.Monster.AssignMonster();
+            }
+            else if (Enemy4 == null)
+            {
+                Enemy4 = Instantiate(MonsterPrefab).GetComponent<EntityManagerScript>();
+                Enemy4.Monster.AssignMonster();
+            }
+            else
+            {
+                Debug.Log("Error: Too Many Enemies");
+            }
+        }
+    }
+
+    void AITurn(EntityManagerScript AI)
+    {
+        AI.DoAction(0);
+        AI.EndTurn();
     }
 }
