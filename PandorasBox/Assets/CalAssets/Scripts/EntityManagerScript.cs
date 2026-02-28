@@ -54,17 +54,12 @@ public class EntityManagerScript : MonoBehaviour
             //Debug.Log(message);
             if (IsPlayer) {DoPassives();}
         }
-        if (Health < 0 && !IsPlayer)
-        {
-            Manager.EndRound(this);
-            Destroy(this.gameObject);
-        }
+        
     }
 
     public void EndTurn()
     {
-        Health += HealthRegen / 2;
-        if (Health>MaxHealth) { Health = MaxHealth; }
+        
         IsTurn = false;
         Manager.GetTurn().IsTurn = true;
     }
@@ -74,31 +69,120 @@ public class EntityManagerScript : MonoBehaviour
         switch (ActionDictionary[ActionType])
         {
             case "Basic Attack":
-                SelectTarget().TakeDamage(Attack);
+                if (!IsPlayer)
+                {
+                    Target = Manager.Player;
+                }
+                if (Target != null)
+                {
+                    Target.TakeDamage(Attack);
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "HydraBite":
+                Debug.Log("HydraBite");
+                if (!IsPlayer)
+                {
+                    Target = Manager.Player;
+                }
+                if (Target != null)
+                {
+                    Target.TakeDamage(Attack);
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "MinotaurAxe":
+                Debug.Log("Minotaur");
+                if (!IsPlayer)
+                {
+                    Target = Manager.Player;
+                }
+                if (Target != null)
+                {
+                    Target.TakeDamage(Attack);
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "PixieSpell":
+                Debug.Log("PixieSpell");
+                if (!IsPlayer)
+                {
+                    Target = Manager.Player;
+                }
+                if (Target != null)
+                {
+                    Target.TakeDamage(Attack);
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "RaptorClaw":
+                Debug.Log("RaptorClaw");
+                if (!IsPlayer)
+                {
+                    Target = Manager.Player;
+                }
+                if (Target != null)
+                {
+                    Target.TakeDamage(Attack);
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "BasiliskGaze":
+                Debug.Log("BasiliskGaze");
+                if (!IsPlayer)
+                {
+                    Target = Manager.Player;
+                }
+                if (Target != null)
+                {
+                    Target.TakeDamage(Attack);
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "GhostHaunt":
+                Debug.Log("GhostHaunt");
+                if (!IsPlayer)
+                {
+                    Target = Manager.Player;
+                }
+                if (Target != null)
+                {
+                    Target.TakeDamage(Attack);
+                    Target = null;
+                    EndTurn();
+                }
                 break;
         }
-        EndTurn();
     }
 
-    EntityManagerScript SelectTarget()
+    public void SelectTarget(int ID)
     {
-        int ID;
-        if (!IsPlayer) { ID = 0; }
-        else { ID = 0; }// access ui to select target 
+        if (!IsPlayer) { ID = 0; }// access ui to select target 
         if (ID == 0) { Target = Manager.Player; }
         else if (ID == 1) { Target = Manager.Enemy1; }
         else if (ID == 2) { Target = Manager.Enemy2; }
         else if (ID == 3) { Target = Manager.Enemy3; }
         else if (ID == 4) { Target = Manager.Enemy4; }
-        return Target;
+        Debug.Log(Target);
     }
 
     public void TakeDamage(int Damage)
     {
         Damage -= Defence;
-        if (Damage < 0) { Damage = 0; }
-        Damage += 1;
+        if (Damage < 0) { Damage = 1; }
         Health -= Damage;
+        if (Health <= 0 && !IsPlayer)
+        {
+            Manager.EndRound(this);
+            Destroy(this.gameObject);
+            Debug.Log("enemy killed");
+        }
     }
 
     void DoPassives()

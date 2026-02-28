@@ -40,6 +40,7 @@ public class CombatSystemScript : MonoBehaviour
     void CalcTurns()
     {
         if (TurnOrder.Count > 0) { TurnOrder.Clear(); }
+        
         float loopcount = Player.Speed;
         for (int i = 0; i <= (loopcount / 20); i++)
         {
@@ -93,19 +94,25 @@ public class CombatSystemScript : MonoBehaviour
     public void EndRound(EntityManagerScript Enemy)
     {
         roundcount++;
+        Player.Health += Player.HealthRegen / 2;
+        if (Player.Health > Player.MaxHealth) { Player.Health = Player.MaxHealth; }
         Player.HeldItems.Add(Enemy.HeldItems[0]);
+        Debug.Log("you acquired: " + Enemy.HeldItems[0]);
         Player.PassiveEffects.Add(Enemy.PassiveEffects[0]);
+        SpawnMonster();
     }
 
     void SpawnMonster()
     {
-        for(int i = 0;i < roundcount+1;i++)
+        Enemy1 = null;
+        Enemy2 = null;
+        Enemy3 = null;
+        Enemy4 = null;
+        for (int i = 0;i < roundcount+1;i++)
         {
             if (Enemy1 == null)
             {
                 Enemy1 = Instantiate(MonsterPrefab).GetComponent<EntityManagerScript>();
-                Debug.Log("EnemySpawn");
-                Debug.Log(Enemy1.Monster);
                 Enemy1.Monster.AssignMonster();
             }
             else if (Enemy2 == null)
@@ -133,6 +140,5 @@ public class CombatSystemScript : MonoBehaviour
     void AITurn(EntityManagerScript AI)
     {
         AI.DoAction(0);
-        AI.EndTurn();
     }
 }
