@@ -7,6 +7,7 @@ public class EnemySelectScript : MonoBehaviour
     public GameObject enemy2;
     public GameObject enemy3;
     public GameObject enemy4;
+    public GameObject player;
 
     public void ActivateEnemies()
     {
