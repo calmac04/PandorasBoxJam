@@ -91,27 +91,36 @@ public class EntityManagerScript : MonoBehaviour
             if (Manager.Enemy1 == this)
             {
                 string Readout = Monster.MonsterType.ToString() + "\n" + "HP: " + Health.ToString() + "\n" + HeldItems[0].ToString();
-                Debug.Log(Readout);
                 Manager.UI1.text = Readout;
             }
             else if (!Manager.Enemy2 == this)
             {
-
+                string Readout = Monster.MonsterType.ToString() + "\n" + "HP: " + Health.ToString() + "\n" + HeldItems[0].ToString();
+                Manager.UI2.text = Readout;
             }
             else if (!Manager.Enemy3 == this)
             {
-
+                string Readout = Monster.MonsterType.ToString() + "\n" + "HP: " + Health.ToString() + "\n" + HeldItems[0].ToString();
+                Manager.UI3.text = Readout;
             }
             else if (!Manager.Enemy4 == this)
             {
-
+                string Readout = Monster.MonsterType.ToString() + "\n" + "HP: " + Health.ToString() + "\n" + HeldItems[0].ToString();
+                Manager.UI4.text = Readout;
             }
+        }
+        else
+        {
+            string Readout = "HP: " + Health.ToString();
+            Manager.PUI.text = Readout;
         }
     }
 
     public void EndTurn()
     {
-        
+        Debug.Log("TurnEnd");
+        CurrentMove = -1;
+        Target = null;
         IsTurn = false;
         Manager.GetTurn().IsTurn = true;
     }
@@ -335,8 +344,7 @@ public class EntityManagerScript : MonoBehaviour
 
     public void SelectTarget(int ID)
     {
-        if (!IsPlayer) { ID = 0; }// access ui to select target 
-        if (ID == 0) { Target = Manager.Player; }
+        if (ID == 0) { Target = Manager.Player; Debug.Log("Player selected"); }
         else if (ID == 1) { Target = Manager.Enemy1; }
         else if (ID == 2) { Target = Manager.Enemy2; }
         else if (ID == 3) { Target = Manager.Enemy3; }

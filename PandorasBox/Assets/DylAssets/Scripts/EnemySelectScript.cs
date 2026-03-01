@@ -19,6 +19,8 @@ public class EnemySelectScript : MonoBehaviour
         temp.interactable = true;
         temp = enemy4.GetComponent<Button>();
         temp.interactable = true;
+        temp = player.GetComponent<Button>();
+        temp.interactable = true;
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created

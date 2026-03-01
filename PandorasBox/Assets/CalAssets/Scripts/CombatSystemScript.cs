@@ -15,6 +15,7 @@ public class CombatSystemScript : MonoBehaviour
     public TextMeshProUGUI UI2;
     public TextMeshProUGUI UI3;
     public TextMeshProUGUI UI4;
+    public TextMeshProUGUI PUI;
     public List<KeyValuePair<EntityManagerScript,float>> TurnOrder = new List<KeyValuePair<EntityManagerScript, float>>();
     public List<EntityManagerScript> Entities;
     public List<float> Speeds;
