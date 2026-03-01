@@ -39,6 +39,8 @@ public class EntityManagerScript : MonoBehaviour
 
     public int Blocking;
     public int Wounded;
+
+    public int CurrentMove;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,8 +64,9 @@ public class EntityManagerScript : MonoBehaviour
             //Debug.Log(message);
             if (IsPlayer) {DoPassives();}
         }
-        if (HeldItems != null)
+        if (HeldItems.Count-1 != 0)
         {
+            //Debug.Log(HeldItems.Count);
             foreach (string item in HeldItems)
             {
                 if (item == Items.Dictionary[1] || item == Items.Dictionary[3])
@@ -82,7 +85,27 @@ public class EntityManagerScript : MonoBehaviour
                     HeldItems.Remove(item);
                 }
             }
+        }
+        if (!IsPlayer)
+        {
+            if (Manager.Enemy1 == this)
+            {
+                string Readout = Monster.MonsterType.ToString() + "\n" + "HP: " + Health.ToString() + "\n" + HeldItems[0].ToString();
+                Debug.Log(Readout);
+                Manager.UI1.text = Readout;
+            }
+            else if (!Manager.Enemy2 == this)
+            {
 
+            }
+            else if (!Manager.Enemy3 == this)
+            {
+
+            }
+            else if (!Manager.Enemy4 == this)
+            {
+
+            }
         }
     }
 
@@ -91,6 +114,11 @@ public class EntityManagerScript : MonoBehaviour
         
         IsTurn = false;
         Manager.GetTurn().IsTurn = true;
+    }
+
+    public void PickAction(int Pick)
+    {
+        CurrentMove = Pick;
     }
 
     public void DoAction(int ActionType)
@@ -314,6 +342,7 @@ public class EntityManagerScript : MonoBehaviour
         else if (ID == 3) { Target = Manager.Enemy3; }
         else if (ID == 4) { Target = Manager.Enemy4; }
         Debug.Log(Target);
+        DoAction(CurrentMove);
     }
 
     public void TakeDamage(int Damage)
