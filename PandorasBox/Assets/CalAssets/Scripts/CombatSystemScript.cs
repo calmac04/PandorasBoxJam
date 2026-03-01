@@ -78,6 +78,10 @@ public class CombatSystemScript : MonoBehaviour
             Debug.Log(CurrentCombatant.ToString());
             Entities.RemoveAt(0);
             Speeds.RemoveAt(0);
+            if (CurrentCombatant == Player)
+            {
+                Player.Defence = Player.TrueDefence;
+            }
             return CurrentCombatant;
         }
         else
@@ -96,9 +100,14 @@ public class CombatSystemScript : MonoBehaviour
         roundcount++;
         Player.Health += Player.HealthRegen / 2;
         if (Player.Health > Player.MaxHealth) { Player.Health = Player.MaxHealth; }
-        Player.HeldItems.Add(Enemy.HeldItems[0]);
-        Debug.Log("you acquired: " + Enemy.HeldItems[0]);
-        Player.PassiveEffects.Add(Enemy.PassiveEffects[0]);
+        if (Player.ItemCount < Player.MaxHeldItems)
+        {
+            Player.HeldItems.Add(Enemy.HeldItems[0]);
+            Debug.Log("you acquired: " + Enemy.HeldItems[0]);
+            Player.PassiveEffects.Add(Enemy.PassiveEffects[0]);
+            Player.ItemCount += 1;
+            Player.DoPassives();
+        }
         SpawnMonster();
     }
 

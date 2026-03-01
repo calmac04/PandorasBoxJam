@@ -31,7 +31,7 @@ public class MonsterLoader : MonoBehaviour
                 Link.Defence = 2;
                 Link.Speed = 5;
                 Link.ActionDictionary.Add("HydraBite");
-                Link.HeldItems.Add("HydraItem");
+                Link.HeldItems.Add("Hydra Neck Brace");
                 Link.PassiveEffects.Add("HydraEffect");
                 break;
 
@@ -42,7 +42,7 @@ public class MonsterLoader : MonoBehaviour
                 Link.Defence = 5;
                 Link.Speed = 10;
                 Link.ActionDictionary.Add("MinotaurAxe");
-                Link.HeldItems.Add("MinotaurItem");
+                Link.HeldItems.Add("Minotaurs Massive Axe");
                 Link.PassiveEffects.Add("MinotaurEffect");
                 break;
 
@@ -53,7 +53,7 @@ public class MonsterLoader : MonoBehaviour
                 Link.Defence = 10;
                 Link.Speed = 20;
                 Link.ActionDictionary.Add("PixieSpell");
-                Link.HeldItems.Add("PixieItem");
+                Link.HeldItems.Add("Pixies tiny Wing");
                 Link.PassiveEffects.Add("PixieEffect");
                 break;
 
@@ -64,7 +64,7 @@ public class MonsterLoader : MonoBehaviour
                 Link.Defence = 7;
                 Link.Speed = 12;
                 Link.ActionDictionary.Add("RaptorClaw");
-                Link.HeldItems.Add("RaptorItem");
+                Link.HeldItems.Add("Raptors Razor Claw");
                 Link.PassiveEffects.Add("RaptorEffect");
                 break;
 
@@ -75,7 +75,7 @@ public class MonsterLoader : MonoBehaviour
                 Link.Defence = 8;
                 Link.Speed = 5;
                 Link.ActionDictionary.Add("BasiliskGaze");
-                Link.HeldItems.Add("BasiliskItem");
+                Link.HeldItems.Add("Basilisks Glowing Eye");
                 Link.PassiveEffects.Add("BasiliskEffect");
                 break;
 
@@ -86,7 +86,7 @@ public class MonsterLoader : MonoBehaviour
                 Link.Defence = 15;
                 Link.Speed = 1;
                 Link.ActionDictionary.Add("GhostHaunt");
-                Link.HeldItems.Add("GhostItem");
+                Link.HeldItems.Add("Ectoplasm");
                 Link.PassiveEffects.Add("GhostEffect");
                 break;
         }
