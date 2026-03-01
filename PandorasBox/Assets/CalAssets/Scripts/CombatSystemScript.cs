@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics; 
 using UnityEngine;
 
@@ -10,12 +11,16 @@ public class CombatSystemScript : MonoBehaviour
     public EntityManagerScript Enemy2;
     public EntityManagerScript Enemy3;
     public EntityManagerScript Enemy4;
+    public TextMeshProUGUI UI1;
+    public TextMeshProUGUI UI2;
+    public TextMeshProUGUI UI3;
+    public TextMeshProUGUI UI4;
     public List<KeyValuePair<EntityManagerScript,float>> TurnOrder = new List<KeyValuePair<EntityManagerScript, float>>();
     public List<EntityManagerScript> Entities;
     public List<float> Speeds;
     public EntityManagerScript CurrentCombatant;
     public GameObject MonsterPrefab;
-    public int roundcount = 1;
+    public int roundcount = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
