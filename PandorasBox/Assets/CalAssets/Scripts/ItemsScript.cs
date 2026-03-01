@@ -43,6 +43,4 @@ public class ItemsScript : MonoBehaviour
                 break;
         }
     }
-
-
 }

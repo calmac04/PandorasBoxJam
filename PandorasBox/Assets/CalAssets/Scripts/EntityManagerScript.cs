@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
+using TMPro;
 
 public class EntityManagerScript : MonoBehaviour
 {
@@ -41,6 +42,13 @@ public class EntityManagerScript : MonoBehaviour
     public int Wounded;
 
     public int CurrentMove;
+
+    public TextMeshProUGUI OFFUI1;
+    public TextMeshProUGUI OFFUI2;
+    public TextMeshProUGUI DEFUI1;
+    public TextMeshProUGUI DEFUI2;
+    public TextMeshProUGUI UTIUI1;
+    public TextMeshProUGUI UTIUI2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -64,25 +72,32 @@ public class EntityManagerScript : MonoBehaviour
             //Debug.Log(message);
             if (IsPlayer) {DoPassives();}
         }
-        if (HeldItems.Count-1 != 0)
+        if (HeldItems.Count != 0 && IsPlayer)
         {
-            //Debug.Log(HeldItems.Count);
             foreach (string item in HeldItems)
             {
+                Debug.Log(item);
                 if (item == Items.Dictionary[1] || item == Items.Dictionary[3])
                 {
                     OffItems.Add(item);
                     HeldItems.Remove(item);
+                    OFFUI1.text = OffItems[0].ToString();
+                    OFFUI2.text = OffItems[1].ToString();
+
                 }
                 else if (item == Items.Dictionary[2] || item == Items.Dictionary[5])
                 {
                     DefItems.Add(item);
                     HeldItems.Remove(item);
+                    DEFUI1.text = DefItems[0].ToString();
+                    DEFUI2.text = DefItems[1].ToString();
                 }
                 else if (item == Items.Dictionary[0] || item == Items.Dictionary[4])
                 {
                     UtiItems.Add(item);
                     HeldItems.Remove(item);
+                    UTIUI1.text = UtiItems[0].ToString();
+                    UTIUI2.text = UtiItems[1].ToString();
                 }
             }
         }
@@ -238,21 +253,27 @@ public class EntityManagerScript : MonoBehaviour
             case "Offense 1":
                 if (Target != null)
                 {
-                    Items.UseItem(OffItems[0], Target, this);
-                    OffItems.RemoveAt(0);
-                    ItemCount--;
-                    Target = null;
-                    EndTurn();
+                    if (OffItems[0] != null)
+                    {
+                        Items.UseItem(OffItems[0], Target, this);
+                        OffItems.RemoveAt(0);
+                        ItemCount--;
+                        Target = null;
+                        EndTurn();
+                    }
                 }
                 break;
             case "Offense 2":
                 if (Target != null)
                 {
-                    Items.UseItem(OffItems[1], Target, this);
-                    OffItems.RemoveAt(1);
-                    ItemCount--;
-                    Target = null;
-                    EndTurn();
+                    if (OffItems[1] != null)
+                    {
+                        Items.UseItem(OffItems[1], Target, this);
+                        OffItems.RemoveAt(1);
+                        ItemCount--;
+                        Target = null;
+                        EndTurn();
+                    }
                 }
                 break;
             case "Offense 3":
@@ -276,20 +297,26 @@ public class EntityManagerScript : MonoBehaviour
                 }
                 break;
             case "Defence 1":
-                Target = Manager.Player;
-                Items.UseItem(DefItems[0], Target, this);
-                DefItems.RemoveAt(0);
-                ItemCount--;
-                Target = null;
-                EndTurn();
+                if (DefItems[0] != null)
+                {
+                    Target = Manager.Player;
+                    Items.UseItem(DefItems[0], Target, this);
+                    DefItems.RemoveAt(0);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
                 break;
             case "Defence 2":
-                Target = Manager.Player;
-                Items.UseItem(DefItems[1], Target, this);
-                DefItems.RemoveAt(1);
-                ItemCount--;
-                Target = null;
-                EndTurn();
+                if (DefItems[1] != null)
+                {
+                    Target = Manager.Player;
+                    Items.UseItem(DefItems[1], Target, this);
+                    DefItems.RemoveAt(1);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
                 break;
             case "Defence 3":
                 Target = Manager.Player;
@@ -308,20 +335,26 @@ public class EntityManagerScript : MonoBehaviour
                 EndTurn();
                 break;
             case "Utility 1":
-                Target = Manager.Player;
-                Items.UseItem(DefItems[0], Target, this);
-                UtiItems.RemoveAt(0);
-                ItemCount--;
-                Target = null;
-                EndTurn();
+                if (UtiItems[0] != null)
+                {
+                    Target = Manager.Player;
+                    Items.UseItem(DefItems[0], Target, this);
+                    UtiItems.RemoveAt(0);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
                 break;
             case "Utility 2":
-                Target = Manager.Player;
-                Items.UseItem(DefItems[1], Target, this);
-                UtiItems.RemoveAt(1);
-                ItemCount--;
-                Target = null;
-                EndTurn();
+                if (UtiItems[0] != null)
+                {
+                    Target = Manager.Player;
+                    Items.UseItem(DefItems[1], Target, this);
+                    UtiItems.RemoveAt(1);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
                 break;
             case "Utility 3":
                 Target = Manager.Player;
@@ -386,11 +419,22 @@ public class EntityManagerScript : MonoBehaviour
         Damage -= Defence;
         if (Damage < 0) { Damage = 1; }
         Health -= Damage;
-        if (Health <= 0 && !IsPlayer)
+        if (!IsPlayer)
         {
-            Manager.EndRound(this);
-            Destroy(this.gameObject);
-            Debug.Log("enemy killed");
+            if (Health <= 0)
+            {
+                Manager.EndRound(this);
+                Destroy(this.gameObject);
+                Debug.Log("enemy killed");
+            }
+        }
+        else 
+        {
+            if (Health <= 0)
+            {
+                Manager.Dialogue.text = "Player health 0 you lose";
+                this.gameObject.SetActive(false);
+            }
         }
     }
 
