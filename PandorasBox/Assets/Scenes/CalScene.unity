@@ -464,7 +464,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 152335508}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 14
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &152335508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,7 +597,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 215840889}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 12
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &215840889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,7 +1210,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 442247079}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &442247079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1962,7 +1998,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 598444482}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &598444482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2813,7 +2861,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 932800447}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &932800447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3345,7 +3405,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1187497299}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1187497299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3466,7 +3538,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1238027989}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1238027989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3691,7 +3775,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1270143907}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1270143907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4003,7 +4099,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1325154759}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1325154759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4124,7 +4232,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1364795278}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1364795278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4995,6 +5115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823958495}
   - component: {fileID: 1823958494}
+  - component: {fileID: 1823958497}
   - component: {fileID: 1823958496}
   m_Layer: 0
   m_Name: Player
@@ -5025,15 +5146,35 @@ MonoBehaviour:
   Speed: 10
   TrueSpeed: 10
   Defence: 0
+  TrueDefence: 0
   HeldItems: []
+  ItemCount: 0
   MaxHeldItems: 4
   PassiveEffects: []
+  OffItems: []
+  DefItems: []
+  UtiItems: []
+  Items: {fileID: 1823958497}
   ActionDictionary:
   - Basic Attack
   - Basic Defend
   - Basic Heal
+  - Offense 1
+  - Offense 2
+  - Offense 3
+  - Offense 4
+  - Defence 1
+  - Defence 2
+  - Defence 3
+  - Defence 4
+  - Utility 1
+  - Utility 2
+  - Utility 3
+  - Utility 4
   Target: {fileID: 0}
   Monster: {fileID: 0}
+  Blocking: 0
+  Wounded: 0
 --- !u!4 &1823958495
 Transform:
   m_ObjectHideFlags: 0
@@ -5235,6 +5376,19 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1823958497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823958493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7659cb4503a5235489c1ce82772cecca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemsScript
+  Dictionary: []
 --- !u!1 &1908197909
 GameObject:
   m_ObjectHideFlags: 0
@@ -5454,7 +5608,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1962803604}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 13
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1962803604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5575,7 +5741,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1974600508}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1823958494}
+        m_TargetAssemblyTypeName: EntityManagerScript, Assembly-CSharp
+        m_MethodName: DoAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1974600508
 MonoBehaviour:
   m_ObjectHideFlags: 0

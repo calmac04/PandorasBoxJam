@@ -20,10 +20,16 @@ public class EntityManagerScript : MonoBehaviour
     public int TrueSpeed;
 
     public int Defence;
+    public int TrueDefence;
 
     public List<string> HeldItems;
+    public int ItemCount;
     public int MaxHeldItems;
     public List<string> PassiveEffects;
+    public List<string> OffItems;
+    public List<string> DefItems;
+    public List<string> UtiItems;
+    public ItemsScript Items;
 
     public List<string> ActionDictionary;
 
@@ -31,6 +37,8 @@ public class EntityManagerScript : MonoBehaviour
 
     public MonsterLoader Monster;
 
+    public int Blocking;
+    public int Wounded;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,7 +62,28 @@ public class EntityManagerScript : MonoBehaviour
             //Debug.Log(message);
             if (IsPlayer) {DoPassives();}
         }
-        
+        if (HeldItems != null)
+        {
+            foreach (string item in HeldItems)
+            {
+                if (item == Items.Dictionary[1] || item == Items.Dictionary[3])
+                {
+                    OffItems.Add(item);
+                    HeldItems.Remove(item);
+                }
+                else if (item == Items.Dictionary[2] || item == Items.Dictionary[5])
+                {
+                    DefItems.Add(item);
+                    HeldItems.Remove(item);
+                }
+                else if (item == Items.Dictionary[0] || item == Items.Dictionary[4])
+                {
+                    UtiItems.Add(item);
+                    HeldItems.Remove(item);
+                }
+            }
+
+        }
     }
 
     public void EndTurn()
@@ -69,6 +98,7 @@ public class EntityManagerScript : MonoBehaviour
         switch (ActionDictionary[ActionType])
         {
             case "Basic Attack":
+                Debug.Log("Basic Attack");
                 if (!IsPlayer)
                 {
                     Target = Manager.Player;
@@ -79,6 +109,16 @@ public class EntityManagerScript : MonoBehaviour
                     Target = null;
                     EndTurn();
                 }
+                break;
+            case "Basic Defend":
+                Debug.Log("Basic Defend");
+                Defence += 10;
+                EndTurn();
+                break;
+            case "Basic Heal":
+                Debug.Log("Basic Heal");
+                Health += HealthRegen;
+                EndTurn();
                 break;
             case "HydraBite":
                 Debug.Log("HydraBite");
@@ -158,6 +198,110 @@ public class EntityManagerScript : MonoBehaviour
                     EndTurn();
                 }
                 break;
+            case "Offense 1":
+                if (Target != null)
+                {
+                    Items.UseItem(OffItems[0], Target, this);
+                    OffItems.RemoveAt(0);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "Offense 2":
+                if (Target != null)
+                {
+                    Items.UseItem(OffItems[1], Target, this);
+                    OffItems.RemoveAt(1);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "Offense 3":
+                if (Target != null)
+                {
+                    Items.UseItem(OffItems[2], Target, this);
+                    OffItems.RemoveAt(2);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "Offense 4":
+                if (Target != null)
+                {
+                    Items.UseItem(OffItems[3], Target, this);
+                    OffItems.RemoveAt(3);
+                    ItemCount--;
+                    Target = null;
+                    EndTurn();
+                }
+                break;
+            case "Defence 1":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[0], Target, this);
+                DefItems.RemoveAt(0);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
+            case "Defence 2":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[1], Target, this);
+                DefItems.RemoveAt(1);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
+            case "Defence 3":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[2], Target, this);
+                DefItems.RemoveAt(2);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
+            case "Defence 4":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[3], Target, this);
+                DefItems.RemoveAt(3);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
+            case "Utility 1":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[0], Target, this);
+                UtiItems.RemoveAt(0);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
+            case "Utility 2":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[1], Target, this);
+                UtiItems.RemoveAt(1);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
+            case "Utility 3":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[2], Target, this);
+                UtiItems.RemoveAt(2);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
+            case "Utility 4":
+                Target = Manager.Player;
+                Items.UseItem(DefItems[3], Target, this);
+                UtiItems.RemoveAt(3);
+                ItemCount--;
+                Target = null;
+                EndTurn();
+                break;
         }
     }
 
@@ -174,6 +318,34 @@ public class EntityManagerScript : MonoBehaviour
 
     public void TakeDamage(int Damage)
     {
+        if (IsPlayer && Blocking != 0)
+        {
+            if (Blocking == 1)
+            {
+                Blocking = 0;
+                int NewTarget = Random.Range(1, 4);
+                if (NewTarget == 1) { Target = Manager.Enemy1; }
+                else if (NewTarget == 2) { Target = Manager.Enemy2; }
+                else if (NewTarget == 3) { Target = Manager.Enemy3; }
+                else if (NewTarget == 4) { Target = Manager.Enemy4; }
+                Target.TakeDamage(Damage);
+            }
+            else if (Blocking == 2)
+            {
+                Blocking = 3;
+                Damage = 0;
+            }
+        }
+        if (Manager.Player.Blocking == 3)
+        {
+            Damage -= Damage / 2;
+            Manager.Player.Blocking = 0;
+        }
+        if (Wounded > 0)
+        {
+            Damage += Wounded;
+            Wounded -= 5;
+        }
         Damage -= Defence;
         if (Damage < 0) { Damage = 1; }
         Health -= Damage;
@@ -185,13 +357,41 @@ public class EntityManagerScript : MonoBehaviour
         }
     }
 
-    void DoPassives()
+    public void DoPassives()
     {
-        foreach(string effect in PassiveEffects)
+        for (int i = 0; i < PassiveEffects.Count; i++) 
         {
-            switch (effect)
+            switch (PassiveEffects[i])
             {
-                case "null":
+                case "HydraEffect":
+                    PassiveEffects[i] = "Hydra";
+                    HealthRegen += 10;
+                    MaxHealth -= 10;
+                    break;
+                case "MinotaurEffect":
+                    PassiveEffects[i] = "Minotaur";
+                    MaxHealth += 10;
+                    Speed = 5;
+                    break;
+                case "PixieEffect":
+                    PassiveEffects[i] = "Pixie";
+                    Speed += 5;
+                    MaxHealth -= 10;
+                    break;
+                case "RaptorEffect":
+                    PassiveEffects[i] = "Raptor";
+                    Attack += 10;
+                    MaxHealth = 10;
+                    break;
+                case "BasiliskEffect":
+                    PassiveEffects[i] = "Basilisk";
+                    Attack += 10;
+                    Speed -= 5;
+                    break;
+                case "GhostEffect":
+                    PassiveEffects[i] = "Ghost";
+                    Defence += 5;
+                    Attack -= 10;
                     break;
             }
         }
